@@ -1,7 +1,8 @@
 {
   "name": "demicod",
   "displayName": "DemiCod",
-  "description": "Step-by-Step Micro-dosing Code Demo Presenter",
+  "publisher": "Sudharsan Vanamali",
+  "description": "Step-by-Step Code Presenter",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.118.0"
@@ -9,15 +10,89 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "demicod.helloWorld",
-        "title": "Hello World"
+        "command": "demicod.addStep",
+        "title": "Demicod: Add Selection as Step"
+      },
+      {
+        "command": "demicod.startPresentation",
+        "title": "Demicod: Start Presentation"
+      },
+      {
+        "command": "demicod.clearSteps",
+        "title": "Demicod: Clear All Steps"
+      },
+      {
+        "command": "demicod.removeLastStep",
+        "title": "Demicod: Remove Last Step"
+      },
+      {
+        "command": "demicod.nextStep",
+        "title": "Demicod: Next Step"
+      },
+      {
+        "command": "demicod.previousStep",
+        "title": "Demicod: Previous Step"
+      },
+      {
+        "command": "demicod.endPresentation",
+        "title": "Demicod: End Presentation"
+      },
+      {
+        "command": "demicod.openKeyboardShortcuts",
+        "title": "Demicod: Open Keyboard Shortcuts"
       }
-    ]
+    ],
+    "keybindings": [
+      {
+        "command": "demicod.addStep",
+        "key": "ctrl+shift+d",
+        "mac": "cmd+shift+d",
+        "when": "editorHasSelection"
+      },
+      {
+        "command": "demicod.startPresentation",
+        "key": "ctrl+shift+enter",
+        "mac": "cmd+shift+enter"
+      },
+      {
+        "command": "demicod.nextStep",
+        "key": "ctrl+shift+right",
+        "mac": "cmd+shift+right"
+      },
+      {
+        "command": "demicod.previousStep",
+        "key": "ctrl+shift+left",
+        "mac": "cmd+shift+left"
+      },
+      {
+        "command": "demicod.endPresentation",
+        "key": "ctrl+shift+escape",
+        "mac": "cmd+shift+escape"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "editorHasSelection",
+          "command": "demicod.addStep",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Demicod",
+      "properties": {
+        "demicod.stepSeparator": {
+          "type": "string",
+          "default": "\n",
+          "description": "Separator inserted between accumulated steps during presentation."
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
