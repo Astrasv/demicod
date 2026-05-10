@@ -134,7 +134,9 @@ export class PresentationSession {
     private dispose(): void {
         while (this._disposables.length) {
             const d = this._disposables.pop();
-            if (d) d.dispose();
+            if (d) {
+                d.dispose();
+            }
         }
         if (PresentationSession._active === this) {
             PresentationSession._active = undefined;

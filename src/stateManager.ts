@@ -47,7 +47,9 @@ export class StateManager {
     public removeLastStepForFile(filePath: string): void {
         const steps = this.getAllSteps();
         const removeIndex = this.findLastStepIndex(steps, filePath);
-        if (removeIndex === -1) return;
+        if (removeIndex === -1) {
+            return;
+        }
 
         steps.splice(removeIndex, 1);
         this.saveSteps(this.renumberSteps(steps));

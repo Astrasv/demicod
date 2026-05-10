@@ -6,7 +6,9 @@ export function registerCommands(context: vscode.ExtensionContext, stateManager:
     context.subscriptions.push(
         vscode.commands.registerCommand('demicod.addStep', () => {
             const editor = vscode.window.activeTextEditor;
-            if (!editor) return;
+            if (!editor) {
+                return;
+            }
 
             const selection = editor.selection;
             if (selection.isEmpty) {
@@ -44,28 +46,36 @@ export function registerCommands(context: vscode.ExtensionContext, stateManager:
     context.subscriptions.push(
         vscode.commands.registerCommand('demicod.nextStep', () => {
             const session = PresentationSession.active;
-            if (session) session.next();
+            if (session) {
+                session.next();
+            }
         })
     );
 
     context.subscriptions.push(
         vscode.commands.registerCommand('demicod.previousStep', () => {
             const session = PresentationSession.active;
-            if (session) session.previous();
+            if (session) {
+                session.previous();
+            }
         })
     );
 
     context.subscriptions.push(
         vscode.commands.registerCommand('demicod.endPresentation', () => {
             const session = PresentationSession.active;
-            if (session) session.end();
+            if (session) {
+                session.end();
+            }
         })
     );
 
     context.subscriptions.push(
         vscode.commands.registerCommand('demicod.clearSteps', () => {
             const editor = vscode.window.activeTextEditor;
-            if (!editor) return;
+            if (!editor) {
+                return;
+            }
 
             stateManager.clearStepsForFile(editor.document.uri.fsPath);
             vscode.window.showInformationMessage(`Steps cleared for ${editor.document.fileName}.`);
@@ -75,7 +85,9 @@ export function registerCommands(context: vscode.ExtensionContext, stateManager:
     context.subscriptions.push(
         vscode.commands.registerCommand('demicod.removeLastStep', () => {
             const editor = vscode.window.activeTextEditor;
-            if (!editor) return;
+            if (!editor) {
+                return;
+            }
 
             const filePath = editor.document.uri.fsPath;
             const steps = stateManager.getStepsForFile(filePath);
